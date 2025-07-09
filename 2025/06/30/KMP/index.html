@@ -41,11 +41,11 @@
 <meta property="og:title" content="KMP">
 <meta property="og:url" content="http://example.com/2025/06/30/KMP/index.html">
 <meta property="og:site_name" content="我不好">
-<meta property="og:description" content="KMP 算法（Knuth–Morris–Pratt）详解一、前言Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth、J. Morris 和 V. Pratt 联合提出。它解决了朴素暴力匹配在最坏情况下退化到 O(n·m) 的问题，将匹配时间降为 O(n + m)。  二、核心思想KMP 算法的核心在于：当匹配失败时，利用已">
+<meta property="og:description" content="KMP 算法（Knuth–Morris–Pratt）详解 ¶一、前言 Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth、J. Morris 和 V. Pratt 联合提出。它解决了朴素暴力匹配在最坏情况下退化到 O(n·m) 的问题，将匹配时间降为 O(n + m)。  ¶二、核心思想 KMP 算法的核心在于：当匹配失败">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-06-30T12:22:59.000Z">
-<meta property="article:modified_time" content="2025-07-04T09:22:19.391Z">
+<meta property="article:modified_time" content="2025-07-09T10:49:17.110Z">
 <meta property="article:author" content="Ermasmg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2164,7 +2164,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1751620981076),
+    lastupdate: new Date(1752058173532),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2214,7 +2214,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <!-- Custom Files headEnd begin-->
   
   <!-- Custom Files headEnd end-->
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://unpkg.com/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://unpkg.com/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
   <body itemscope itemtype="https://schema.org.cn/WebPage">
     <!-- import body_begin begin-->
     <!-- import body_begin end-->
@@ -2564,133 +2568,57 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h1 id="KMP-算法（Knuth–Morris–Pratt）详解"><a href="#KMP-算法（Knuth–Morris–Pratt）详解" class="headerlink" title="KMP 算法（Knuth–Morris–Pratt）详解"></a>KMP 算法（Knuth–Morris–Pratt）详解</h1><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth、J. Morris 和 V. Pratt 联合提出。它解决了朴素暴力匹配在最坏情况下退化到 O(n·m) 的问题，将匹配时间降为 O(n + m)。</p>
+    <h1>KMP 算法（Knuth–Morris–Pratt）详解</h1>
+<h2 id="一、前言"><a class="header-anchor" href="#一、前言">¶</a>一、前言</h2>
+<p>Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth、J. Morris 和 V. Pratt 联合提出。它解决了朴素暴力匹配在最坏情况下退化到 O(n·m) 的问题，将匹配时间降为 O(n + m)。</p>
 <hr>
-<h2 id="二、核心思想"><a href="#二、核心思想" class="headerlink" title="二、核心思想"></a>二、核心思想</h2><p>KMP 算法的核心在于：当匹配失败时，利用已经部分匹配的信息，快速“跳过”不可能匹配的位置，无需每次都回退主串指针。</p>
+<h2 id="二、核心思想"><a class="header-anchor" href="#二、核心思想">¶</a>二、核心思想</h2>
+<p>KMP 算法的核心在于：当匹配失败时，利用已经部分匹配的信息，快速“跳过”不可能匹配的位置，无需每次都回退主串指针。</p>
 <ul>
-<li><strong>暴力匹配</strong>：遇到不等就双指针都回退、主串指针右移一位，重复对比。  </li>
+<li><strong>暴力匹配</strong>：遇到不等就双指针都回退、主串指针右移一位，重复对比。</li>
 <li><strong>KMP 匹配</strong>：遇到不等时，只将模式串指针根据“前缀函数”跳转，主串指针不回退。</li>
 </ul>
 <hr>
-<h2 id="三、前缀函数-π"><a href="#三、前缀函数-π" class="headerlink" title="三、前缀函数 π"></a>三、前缀函数 π</h2><h3 id="3-1-定义"><a href="#3-1-定义" class="headerlink" title="3.1 定义"></a>3.1 定义</h3><p>对模式串 <code>P[0..m-1]</code>，令 π[i] 表示 <code>P[0..i]</code> 的最长<strong>真前缀</strong>（prefix）与<strong>真后缀</strong>（suffix）相等的长度。  </p>
+<h2 id="三、前缀函数-π"><a class="header-anchor" href="#三、前缀函数-π">¶</a>三、前缀函数 π</h2>
+<h3 id="3-1-定义"><a class="header-anchor" href="#3-1-定义">¶</a>3.1 定义</h3>
+<p>对模式串 <code>P[0..m-1]</code>，令 π[i] 表示 <code>P[0..i]</code> 的最长<strong>真前缀</strong>（prefix）与<strong>真后缀</strong>（suffix）相等的长度。</p>
 <ul>
-<li>“真前缀&#x2F;真后缀”：长度均 &lt; (i+1)。  </li>
-<li>如果不存在相等的真前后缀，π[i] &#x3D; 0。</li>
+<li>“真前缀/真后缀”：长度均 &lt; (i+1)。</li>
+<li>如果不存在相等的真前后缀，π[i] = 0。</li>
 </ul>
-<h3 id="3-2-示例"><a href="#3-2-示例" class="headerlink" title="3.2 示例"></a>3.2 示例</h3><p>P &#x3D; “aabaaab” i: 0 1 2 3 4 5 6 P[i]: a a b a a a b π[i]: 0 1 0 1 2 2 3</p>
+<h3 id="3-2-示例"><a class="header-anchor" href="#3-2-示例">¶</a>3.2 示例</h3>
+<p>P = “aabaaab” i: 0 1 2 3 4 5 6 P[i]: a a b a a a b π[i]: 0 1 0 1 2 2 3</p>
 <ul>
-<li>π[1]&#x3D;1，因为 “a” &#x3D; “a”  </li>
-<li>π[4]&#x3D;2，因为 “aa” &#x3D; “aa”</li>
+<li>π[1]=1，因为 “a” = “a”</li>
+<li>π[4]=2，因为 “aa” = “aa”</li>
 </ul>
 <hr>
-<h2 id="四、构建-π-数组（O-m-）"><a href="#四、构建-π-数组（O-m-）" class="headerlink" title="四、构建 π 数组（O(m)）"></a>四、构建 π 数组（O(m)）</h2><p>伪代码：</p>
-<pre><code class="text">function buildPi(P):
-  m ← length(P)
-  π ← array[0..m-1], π[0] ← 0
-  j ← 0
-  for i from 1 to m-1:
-    while j &gt; 0 and P[i] ≠ P[j]:
-      j ← π[j-1]
-    if P[i] = P[j]:
-      j ← j + 1
-    π[i] ← j
-  return π
-C++ 实现：
-
-cpp
-vector&lt;int&gt; buildPi(const string&amp; P) &#123;
-    int m = P.size(), j = 0;
-    vector&lt;int&gt; pi(m, 0);
-    for (int i = 1; i &lt; m; i++) &#123;
-        while (j &gt; 0 &amp;&amp; P[i] != P[j])
-            j = pi[j - 1];
-        if (P[i] == P[j]) 
-            j++;
-        pi[i] = j;
-    &#125;
-    return pi;
-&#125;
-时间复杂度：O(m)
-
-空间复杂度：O(m)
-
-##  五、匹配过程（O(n))
-用主串 T[0..n-1] 和模式串 P[0..m-1]，以及已构造的 π 数组，一次扫描主串：
-
-cpp
-int kmpSearch(const string&amp; T, const string&amp; P) &#123;
-    int n = T.size(), m = P.size(), j = 0;
-    auto pi = buildPi(P);
-    for (int i = 0; i &lt; n; i++) &#123;
-        while (j &gt; 0 &amp;&amp; T[i] != P[j])
-            j = pi[j - 1];
-        if (T[i] == P[j])
-            j++;
-        if (j == m)
-            return i - m + 1;  // 匹配成功，返回起始下标
-    &#125;
-    return -1;  // 全串扫描结束，未找到
-&#125;
-时间复杂度：O(n + m)
-
-空间复杂度：O(m)
-
-## 六、完整 C++ 代码模板
-cpp
-class KMP &#123;
-public:
-    // 构造前缀函数
-    static vector&lt;int&gt; buildPi(const string&amp; P) &#123;
-        int m = P.size(), j = 0;
-        vector&lt;int&gt; pi(m, 0);
-        for (int i = 1; i &lt; m; i++) &#123;
-            while (j &gt; 0 &amp;&amp; P[i] != P[j])
-                j = pi[j - 1];
-            if (P[i] == P[j]) 
-                j++;
-            pi[i] = j;
-        &#125;
-        return pi;
-    &#125;
-
-    // 在 T 中查找 P 第一次出现
-    static int search(const string&amp; T, const string&amp; P) &#123;
-        int n = T.size(), m = P.size(), j = 0;
-        if (m == 0) return 0;
-        auto pi = buildPi(P);
-        for (int i = 0; i &lt; n; i++) &#123;
-            while (j &gt; 0 &amp;&amp; T[i] != P[j])
-                j = pi[j - 1];
-            if (T[i] == P[j])
-                j++;
-            if (j == m)
-                return i - m + 1;
-        &#125;
-        return -1;
-    &#125;
-&#125;;
-## 七、应用与扩展
-多模式匹配：Aho–Corasick 自动机
-
-变形算法：Boyer–Moore／Sunday 算法（跳跃表）
-
-哈希方法：Rabin–Karp（需处理哈希冲突）
-
-## 八、小结
-前缀函数 π 为 KMP 预处理核心，线性时间构建；
-
-匹配阶段 仅需 O(n) 扫描主串，无需回退主串指针；
-
-KMP 在大规模文本与海量模式匹配时性能优势显著。
-
-推荐阅读
-
-D. E. Knuth, J. H. Morris Jr., V. R. Pratt, “Fast Pattern Matching in Strings,” 1977.
-
-《算法导论》——字符串匹配章节
-
-LeetCode 28. Find the Index of the First Occurrence in a String
-</code></pre>
+<h2 id="四、构建-π-数组（O-m-）"><a class="header-anchor" href="#四、构建-π-数组（O-m-）">¶</a>四、构建 π 数组（O(m)）</h2>
+<p>伪代码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function buildPi(P):</span><br><span class="line">  m ← length(P)</span><br><span class="line">  π ← array[0..m-1], π[0] ← 0</span><br><span class="line">  j ← 0</span><br><span class="line">  for i from 1 to m-1:</span><br><span class="line">    while j &gt; 0 and P[i] ≠ P[j]:</span><br><span class="line">      j ← π[j-1]</span><br><span class="line">    if P[i] = P[j]:</span><br><span class="line">      j ← j + 1</span><br><span class="line">    π[i] ← j</span><br><span class="line">  return π</span><br></pre></td></tr></table></figure>
+<p>C++ 实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">buildPi</span><span class="params">(<span class="type">const</span> string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>(), j = <span class="number">0</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">pi</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; P[i] != P[j])</span><br><span class="line">            j = pi[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (P[i] == P[j]) </span><br><span class="line">            j++;</span><br><span class="line">        pi[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pi;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(m)</p>
+<p>空间复杂度：O(m)</p>
+<h2 id="五、匹配过程（O-n"><a class="header-anchor" href="#五、匹配过程（O-n">¶</a>五、匹配过程（O(n))</h2>
+<p>用主串 T[0…n-1] 和模式串 P[0…m-1]，以及已构造的 π 数组，一次扫描主串：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">kmpSearch</span><span class="params">(<span class="type">const</span> string&amp; T, <span class="type">const</span> string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = T.<span class="built_in">size</span>(), m = P.<span class="built_in">size</span>(), j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">auto</span> pi = <span class="built_in">buildPi</span>(P);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; T[i] != P[j])</span><br><span class="line">            j = pi[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (T[i] == P[j])</span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span> (j == m)</span><br><span class="line">            <span class="keyword">return</span> i - m + <span class="number">1</span>;  <span class="comment">// 匹配成功，返回起始下标</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 全串扫描结束，未找到</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(n + m)</p>
+<p>空间复杂度：O(m)</p>
+<h2 id="六、完整-C-代码模板"><a class="header-anchor" href="#六、完整-C-代码模板">¶</a>六、完整 C++ 代码模板</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">KMP</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 构造前缀函数</span></span><br><span class="line">    <span class="function"><span class="type">static</span> vector&lt;<span class="type">int</span>&gt; <span class="title">buildPi</span><span class="params">(<span class="type">const</span> string&amp; P)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = P.<span class="built_in">size</span>(), j = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">pi</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; P[i] != P[j])</span><br><span class="line">                j = pi[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (P[i] == P[j]) </span><br><span class="line">                j++;</span><br><span class="line">            pi[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在 T 中查找 P 第一次出现</span></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">search</span><span class="params">(<span class="type">const</span> string&amp; T, <span class="type">const</span> string&amp; P)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = T.<span class="built_in">size</span>(), m = P.<span class="built_in">size</span>(), j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">auto</span> pi = <span class="built_in">buildPi</span>(P);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; T[i] != P[j])</span><br><span class="line">                j = pi[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (T[i] == P[j])</span><br><span class="line">                j++;</span><br><span class="line">            <span class="keyword">if</span> (j == m)</span><br><span class="line">                <span class="keyword">return</span> i - m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="七、应用与扩展"><a class="header-anchor" href="#七、应用与扩展">¶</a>七、应用与扩展</h2>
+<p>多模式匹配：Aho–Corasick 自动机</p>
+<p>变形算法：Boyer–Moore／Sunday 算法（跳跃表）</p>
+<p>哈希方法：Rabin–Karp（需处理哈希冲突）</p>
+<h2 id="八、小结"><a class="header-anchor" href="#八、小结">¶</a>八、小结</h2>
+<p>前缀函数 π 为 KMP 预处理核心，线性时间构建；</p>
+<p>匹配阶段 仅需 O(n) 扫描主串，无需回退主串指针；</p>
+<p>KMP 在大规模文本与海量模式匹配时性能优势显著。</p>
+<p>推荐阅读</p>
+<p>D. E. Knuth, J. H. Morris Jr., V. R. Pratt, “Fast Pattern Matching in Strings,” 1977.</p>
+<p>《算法导论》——字符串匹配章节</p>
+<p>LeetCode 28. Find the Index of the First Occurrence in a String</p>
 
   </div>
   
@@ -2715,10 +2643,10 @@ LeetCode 28. Find the Index of the First Occurrence in a String
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-07-04T17:22:19+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-07-09T18:49:17+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 4, 2025</p>
+    <p>更新于：Jul 9, 2025</p>
   </a>
 </div>
 
@@ -2796,15 +2724,20 @@ LeetCode 28. Find the Index of the First Occurrence in a String
       
         <a class='prev' href='/2025/06/30/%E5%85%B3%E4%BA%8E/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>关于</p>
-          <p class='content'>我不会花太多时间在我的博客上大部分时间它一个都会被用来记录一点东西，当我想记的时候。等到我变得非常厉害的时候我会重新整理这些的。
+          <p class='content'>我不会花太多时间在我的博客上
+大部分时间它一个都会被用来记录一点东西，当我想记的时候。等到我变得非常厉害的时候我会重新整理这些的。
 </p>
         </a>
       
       
         <a class='next' href='/2025/06/30/%E4%BB%8A%E6%97%A5%E5%88%B7%E9%A2%98/'>
           <p class='title'>今日刷题<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>28. 找出字符串中第一个匹配项的下标难度：简单标签：字符串、双指针、字符串匹配企业：相关企业（Premium 题目）  
-题目描述给你两个字符串 haystack 和 needle，请你在 h...</p>
+          <p class='content'>28. 找出字符串中第一个匹配项的下标
+难度：简单
+标签：字符串、双指针、字符串匹配
+企业：相关企业（Premium 题目）
+¶题目描述
+给你两个字符串 haystack 和 needle，请你...</p>
         </a>
       
     </div>
@@ -2865,7 +2798,7 @@ LeetCode 28. Find the Index of the First Occurrence in a String
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">二、核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%89%8D%E7%BC%80%E5%87%BD%E6%95%B0-%CF%80"><span class="toc-text">三、前缀函数 π</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%A4%BA%E4%BE%8B"><span class="toc-text">3.2 示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9E%84%E5%BB%BA-%CF%80-%E6%95%B0%E7%BB%84%EF%BC%88O-m-%EF%BC%89"><span class="toc-text">四、构建 π 数组（O(m)）</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">二、核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%89%8D%E7%BC%80%E5%87%BD%E6%95%B0-%CF%80"><span class="toc-text">三、前缀函数 π</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%A4%BA%E4%BE%8B"><span class="toc-text">3.2 示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9E%84%E5%BB%BA-%CF%80-%E6%95%B0%E7%BB%84%EF%BC%88O-m-%EF%BC%89"><span class="toc-text">四、构建 π 数组（O(m)）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8C%B9%E9%85%8D%E8%BF%87%E7%A8%8B%EF%BC%88O-n"><span class="toc-text">五、匹配过程（O(n))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%8C%E6%95%B4-C-%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="toc-text">六、完整 C++ 代码模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E6%89%A9%E5%B1%95"><span class="toc-text">七、应用与扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%B0%8F%E7%BB%93"><span class="toc-text">八、小结</span></a></li></ol>
   </div>
 </section>
 
@@ -3521,7 +3454,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"一个无聊的人的博客"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我不好"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2025/06/30/KMP/","name":"KMP"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我不好","url":"http://example.com/","keywords":null,"description":"一个无聊的人的博客","author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"一个无聊的人的博客"},"publisher":{"@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"KMP","description":"一个无聊的人的博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/06/30/KMP/"},"author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我不好","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2025/06/30/KMP/","wordCount":0,"datePublished":"2025-06-30T12:22:59.000Z","dateModified":"2025-07-04T09:22:19.391Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"一个无聊的人的博客"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我不好"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2025/06/30/KMP/","name":"KMP"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我不好","url":"http://example.com/","keywords":null,"description":"一个无聊的人的博客","author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"一个无聊的人的博客"},"publisher":{"@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"KMP","description":"一个无聊的人的博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/06/30/KMP/"},"author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我不好","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2025/06/30/KMP/","wordCount":0,"datePublished":"2025-06-30T12:22:59.000Z","dateModified":"2025-07-09T10:49:17.110Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
