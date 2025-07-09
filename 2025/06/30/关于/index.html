@@ -1724,6 +1724,22 @@ ul.list-v >li>a:hover {
         document.documentElement.setAttribute("color-scheme", userColorScheme);
       }
     </script>
+    <!-- MathJax 配置 -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      packages: {'[+]': ['mhchem']}
+    },
+    loader: {load: ['[tex]/mhchem']},
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" async></script>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2164,7 +2180,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1752058228536),
+    lastupdate: new Date(1752058956363),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2676,9 +2692,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <a class='prev' href='/2025/07/04/%E4%BB%8A%E6%97%A5%E6%A0%BD%E8%B7%9F%E5%A4%B4/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>今日栽跟头</p>
           <p class='content'>P1012 [NOIP 1998 提高组] 拼数
-¶题目描述
-设有 nnn 个正整数 a_1 \dots a_n，将它们联接成一排，相邻数字首尾相接，组成一个最大的整数。
-¶输入格式
+题目描述
+设有 $n$ 个正整数 $a_1 \dots a_n$，将它们联接成一排，相邻数字首尾相接，组成一个最大的整数。
+输入格式
 第一行有一...</p>
         </a>
       
@@ -2686,8 +2702,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <a class='next' href='/2025/06/30/KMP/'>
           <p class='title'>KMP<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>KMP 算法（Knuth–Morris–Pratt）详解
-¶一、前言
-Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knut...</p>
+一、前言
+Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth...</p>
         </a>
       
     </div>

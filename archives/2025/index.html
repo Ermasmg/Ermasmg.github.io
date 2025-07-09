@@ -1722,6 +1722,22 @@ ul.list-v >li>a:hover {
         document.documentElement.setAttribute("color-scheme", userColorScheme);
       }
     </script>
+    <!-- MathJax 配置 -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      packages: {'[+]': ['mhchem']}
+    },
+    loader: {load: ['[tex]/mhchem']},
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" async></script>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2162,7 +2178,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1752058228536),
+    lastupdate: new Date(1752058956363),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2635,13 +2651,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         
-¶title: 数学公式测试
+title: 数学公式测试
 date: 2023-07-10
-¶行内公式
-这是质能方程：E=mc2E = mc^2E=mc​2​​，以及化学式 \ce{H2O}。
-¶块公式
-∇×E=−∂B∂t∇×H=J+∂D∂t\begin{aligned}
-\nabla \times \mathbf{E} &amp;= -\frac{\partial \mathbf{B}}{\partial t} \...
+行内公式
+这是质能方程：$E = mc^2$，以及化学式 $\ce{H2O}$。
+块公式
+$$
+\begin{aligned}
+\nabla \times \mathbf{E} &amp;= -\frac{\partial \mathbf{B}}{\partial t} \
+\nabla \times \mathbf{H} &a...
       
     
   </div>
@@ -2697,20 +2715,20 @@ date: 2023-07-10
     
       
         P1192 台阶问题
-¶题目描述
-有 NNN 级台阶，你一开始在底部，每次可以向上迈 1∼K1\sim K1∼K 级台阶，问到达第 NNN 级台阶有多少种不同方式。
-¶输入格式
-两个正整数 N,KN,KN,K。
-¶输出格式
-一个正整数 ans\pmod{100003}，为到达第 NNN 级台阶的不同方式数。
-¶输入输出样例 #1
-¶输入 #1
+题目描述
+有 $N$ 级台阶，你一开始在底部，每次可以向上迈 $1\sim K$ 级台阶，问到达第 $N$ 级台阶有多少种不同方式。
+输入格式
+两个正整数 $N,K$。
+输出格式
+一个正整数 $ans\pmod{100003}$，为到达第 $N$ 级台阶的不同方式数。
+输入输出样例 #1
+输入 #1
 15 2
-¶输出 #1
+输出 #1
 18
-¶说明/提示
+说明/提示
 
-对...
+对于 $20%$ 的数据，$...
       
     
   </div>
@@ -2766,16 +2784,17 @@ date: 2023-07-10
     
       
         P1012 [NOIP 1998 提高组] 拼数
-¶题目描述
-设有 nnn 个正整数 a_1 \dots a_n，将它们联接成一排，相邻数字首尾相接，组成一个最大的整数。
-¶输入格式
-第一行有一个整数，表示数字个数 nnn。
-第二行有 nnn 个整数，表示给出的 nnn 个整数 aia_ia​i​​。
-¶输出格式
+题目描述
+设有 $n$ 个正整数 $a_1 \dots a_n$，将它们联接成一排，相邻数字首尾相接，组成一个最大的整数。
+输入格式
+第一行有一个整数，表示数字个数 $n$。
+第二行有 $n$ 个整数，表示给出的 $n$ 个整数 $a_i$。
+输出格式
 一个正整数，表示最大的整数
-¶输入输出样例 #1
-¶输入 #1
-12313 3...
+输入输出样例 #1
+输入 #1
+12313 312 343
+输...
       
     
   </div>
@@ -2888,11 +2907,11 @@ date: 2023-07-10
     
       
         KMP 算法（Knuth–Morris–Pratt）详解
-¶一、前言
+一、前言
 Knuth–Morris–Pratt（简称 KMP）算法是经典的线性时间字符串单模式匹配算法，1977 年由 D. Knuth、J. Morris 和 V. Pratt 联合提出。它解决了朴素暴力匹配在最坏情况下退化到 O(n·m) 的问题，将匹配时间降为 O(n + m)。
 
-¶二、核心思想
-KMP 算法的核心在于：当匹...
+二、核心思想
+KMP 算法的核心在于：当匹配失...
       
     
   </div>
@@ -2951,12 +2970,12 @@ KMP 算法的核心在于：当匹...
 难度：简单
 标签：字符串、双指针、字符串匹配
 企业：相关企业（Premium 题目）
-¶题目描述
+题目描述
 给你两个字符串 haystack 和 needle，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回 -1。
-¶示例
-¶示例 1
+示例
+示例 1
 输入：
-ha...
+hayst...
       
     
   </div>

@@ -41,7 +41,7 @@
 <meta property="og:title" content="test">
 <meta property="og:url" content="http://example.com/2025/07/09/test/index.html">
 <meta property="og:site_name" content="我不好">
-<meta property="og:description" content="¶title: 数学公式测试 date: 2023-07-10 ¶行内公式 这是质能方程：E&#x3D;mc2E &#x3D; mc^2E&#x3D;mc​2​​，以及化学式 \ce{H2O}。 ¶块公式 ∇×E&#x3D;−∂B∂t∇×H&#x3D;J+∂D∂t\begin{aligned} \nabla \times \mathbf{E} &amp;&#x3D; -\frac{\partial \mathbf{B}}{\partial t} \\ \">
+<meta property="og:description" content="title: 数学公式测试 date: 2023-07-10 行内公式 这是质能方程：$E &#x3D; mc^2$，以及化学式 $\ce{H2O}$。 块公式 $$ \begin{aligned} \nabla \times \mathbf{E} &amp;&#x3D; -\frac{\partial \mathbf{B}}{\partial t} \ \nabla \times \mathbf{H} &amp;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-07-09T10:38:51.000Z">
@@ -1724,6 +1724,22 @@ ul.list-v >li>a:hover {
         document.documentElement.setAttribute("color-scheme", userColorScheme);
       }
     </script>
+    <!-- MathJax 配置 -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      packages: {'[+]': ['mhchem']}
+    },
+    loader: {load: ['[tex]/mhchem']},
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" async></script>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2164,7 +2180,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1752058228536),
+    lastupdate: new Date(1752058956363),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2569,17 +2585,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
     <hr>
-<h2 id="title-数学公式测试date-2023-07-10"><a class="header-anchor" href="#title-数学公式测试date-2023-07-10">¶</a>title: 数学公式测试<br>
+<h2 id="title-数学公式测试date-2023-07-10">title: 数学公式测试<br>
 date: 2023-07-10</h2>
-<h2 id="行内公式"><a class="header-anchor" href="#行内公式">¶</a>行内公式</h2>
-<p>这是质能方程：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>，以及化学式 \ce{H2O}。</p>
-<h2 id="块公式"><a class="header-anchor" href="#块公式">¶</a>块公式</h2>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mi mathvariant="normal">∇</mi><mo>×</mo><mrow><mi mathvariant="bold">E</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mo>−</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="bold">B</mi></mrow></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mi mathvariant="normal">∇</mi><mo>×</mo><mrow><mi mathvariant="bold">H</mi></mrow></mrow></mtd><mtd><mrow><mrow></mrow><mo>=</mo><mrow><mi mathvariant="bold">J</mi></mrow><mo>+</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="bold">D</mi></mrow></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{aligned}
-\nabla \times \mathbf{E} &amp;= -\frac{\partial \mathbf{B}}{\partial t} \\
-\nabla \times \mathbf{H} &amp;= \mathbf{J} + \frac{\partial \mathbf{D}}{\partial t}
-\end{aligned}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:2.30744em;"></span><span class="strut bottom" style="height:4.11488em;vertical-align:-1.8074400000000002em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist"><span style="top:-0.9360000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">∇</span><span class="mbin">×</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">E</span></span></span></span><span style="top:1.1214400000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">∇</span><span class="mbin">×</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">H</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="col-align-l"><span class="vlist"><span style="top:-0.9360000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord">−</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord mathit">t</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle uncramped"><span class="mord mathbf">B</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span><span style="top:1.1214400000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">J</span></span><span class="mbin">+</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord mathit">t</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle uncramped"><span class="mord mathbf">D</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></span></span></p>
-<h2 id="分步推导"><a class="header-anchor" href="#分步推导">¶</a>分步推导</h2>
+<h2 id="行内公式">行内公式</h2>
+<p>这是质能方程：$E = mc^2$，以及化学式 $\ce{H2O}$。</p>
+<h2 id="块公式">块公式</h2>
+<p>$$<br>
+\begin{aligned}<br>
+\nabla \times \mathbf{E} &amp;= -\frac{\partial \mathbf{B}}{\partial t} \<br>
+\nabla \times \mathbf{H} &amp;= \mathbf{J} + \frac{\partial \mathbf{D}}{\partial t}<br>
+\end{aligned}<br>
+$$</p>
+<h2 id="分步推导">分步推导</h2>
 <p>[<br>
 f(x) = \int_{-\infty}^\infty \hat f(\xi) e^{2 \pi i \xi x} d\xi<br>
 ]</p>
@@ -2690,10 +2707,11 @@ f(x) = \int_{-\infty}^\infty \hat f(\xi) e^{2 \pi i \xi x} d\xi<br>
         <a class='next' href='/2025/07/09/%E6%88%91%E4%B9%9F%E6%98%AF%E9%80%92%E5%BD%92%E5%A4%A7%E7%A5%9E%E4%BA%86/'>
           <p class='title'>我也是递归大神了<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>P1192 台阶问题
-¶题目描述
-有 NNN 级台阶，你一开始在底部，每次可以向上迈 1∼K1\sim K1∼K 级台阶，问到达第 NNN 级台阶有多少种不同方式。
-¶输入格式
-两个正整数 N,...</p>
+题目描述
+有 $N$ 级台阶，你一开始在底部，每次可以向上迈 $1\sim K$ 级台阶，问到达第 $N$ 级台阶有多少种不同方式。
+输入格式
+两个正整数 $N,K$。
+输...</p>
         </a>
       
     </div>
