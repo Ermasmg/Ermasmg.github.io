@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="http://example.com/2025/05/11/idontknow/"/>
+  <link rel="canonical" href="http://example.com/2025/07/18/今日第一题/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,19 +33,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>idontknow - 我不好</title>
+  <title>今日第一题 - 我不好</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="一个无聊的人的博客 - Ermasmg - 我不好">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="idontknow">
-<meta property="og:url" content="http://example.com/2025/05/11/idontknow/index.html">
+<meta property="og:title" content="今日第一题">
+<meta property="og:url" content="http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/index.html">
 <meta property="og:site_name" content="我不好">
-<meta property="og:description" content="一个无聊的人的博客">
+<meta property="og:description" content="P1958 上学路线 题目描述 你所在城市的街道好像一个棋盘，有 $a$ 条南北方向的街道和 $b$ 条东西方向的街道。南北方向的 $a$ 条街道从西到东依次编号为 $1$ 到 $a$，而东西方向的 $b$ 条街道从南到北依次编号为 $1$ 到 $b$，南北方向的街道 $i$ 和东西方向的街道 $j$ 的交点记为 $(i,j)$。 你住在 $(1,1)$ 处，而学校在 $(a,b)$ 处，你骑自行">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2025-05-11T14:59:02.000Z">
-<meta property="article:modified_time" content="2025-05-11T14:59:02.403Z">
+<meta property="article:published_time" content="2025-07-18T11:06:05.000Z">
+<meta property="article:modified_time" content="2025-07-18T11:09:47.718Z">
 <meta property="article:author" content="Ermasmg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2515,7 +2515,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 <div id="l_main" class=''>
   <article itemscope itemtype="https://schema.org.cn/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/11/idontknow/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/18/今日第一题/">
   <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
     <meta itemprop="name" content="我不好">
   </span>
@@ -2536,7 +2536,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        idontknow
+        今日第一题
       </h1>
       <div class='new-meta-box'>
         
@@ -2558,10 +2558,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-05-11T22:59:02+08:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-07-18T19:06:05+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 11, 2025</p>
+    <p>发布于：Jul 18, 2025</p>
   </a>
 </div>
 
@@ -2584,7 +2584,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    
+    <h1>P1958 上学路线</h1>
+<h2 id="题目描述">题目描述</h2>
+<p>你所在城市的街道好像一个棋盘，有 $a$ 条南北方向的街道和 $b$ 条东西方向的街道。南北方向的 $a$ 条街道从西到东依次编号为 $1$ 到 $a$，而东西方向的 $b$ 条街道从南到北依次编号为 $1$ 到 $b$，南北方向的街道 $i$ 和东西方向的街道 $j$ 的交点记为 $(i,j)$。</p>
+<p>你住在 $(1,1)$ 处，而学校在 $(a,b)$ 处，你骑自行车去上学，自行车只能沿着街道走，而且为了缩短时间只允许沿着向东和北的方向行驶。</p>
+<p>现在有 $N$ 个交叉路口在施工 $(X_1,Y_1)$、$(X_2,Y_2)$……，$(X_n,Y_n)$，这些路口是不能通车的。</p>
+<p>问你上学一共有多少走法?</p>
+<h2 id="输入格式">输入格式</h2>
+<p>第一行包含两个整数 $a$ 和 $b$，并且满足 $1 \le a,b \le 16$。</p>
+<p>第二行包含一个整数 $N$，表示有 $N$ 个路口在维修 $(1\le N\le 40)$。</p>
+<p>接下来 $N$ 行，每行两个整数$X_i,Y_i$，描述路口的位置。</p>
+<h2 id="输出格式">输出格式</h2>
+<p>输出一个整数表示从 $(1,1)$ 到 $(a,b)$ 的行车路线总数。</p>
+<h2 id="输入输出样例-1">输入输出样例 #1</h2>
+<h3 id="输入-1">输入 #1</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">5 4</span><br><span class="line">3</span><br><span class="line">2 2</span><br><span class="line">2 3</span><br><span class="line">4 2</span><br></pre></td></tr></table></figure>
+<h3 id="输出-1">输出 #1</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<p>然鹅很蠢的是，提交这题的时候洛谷卡了好久说连不上服务器</p>
+<h3 id="二维数组传入函数用vector就行了，初始化方法">二维数组传入函数用vector就行了，初始化方法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">num</span>(a,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(b,n));</span><br></pre></td></tr></table></figure>
+<p>本人题解</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> _CRT_SECURE_NO_WARNINGS 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">linen</span><span class="params">(<span class="type">const</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; num,<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> m,<span class="type">int</span> n)</span> </span>&#123; </span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (m &lt; a&amp;&amp;num[m<span class="number">+1</span>][n]!=<span class="number">1</span>)sum += <span class="built_in">linen</span>(num, a, b, m + <span class="number">1</span>, n); </span><br><span class="line">	<span class="keyword">if</span> (n &lt; b&amp;&amp;num[m][n<span class="number">+1</span>]!=<span class="number">1</span>)sum += <span class="built_in">linen</span>(num, a, b, m, n + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (m == a &amp;&amp; n == b)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">	<span class="type">int</span> T;</span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">num</span>(a<span class="number">+1</span>,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(b<span class="number">+1</span>,<span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= T; i++) &#123;</span><br><span class="line">		<span class="type">int</span> m, n;</span><br><span class="line">		cin &gt;&gt; m &gt;&gt; n;</span><br><span class="line">		num[m][n] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">linen</span>(num, a, b, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
   
   
@@ -2608,10 +2629,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-05-11T22:59:02+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-07-18T19:09:47+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 11, 2025</p>
+    <p>更新于：Jul 18, 2025</p>
   </a>
 </div>
 
@@ -2630,7 +2651,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/05/11/idontknow/&title=idontknow - 我不好&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/&title=今日第一题 - 我不好&summary="
           
           >
           
@@ -2642,7 +2663,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2025/05/11/idontknow/&title=idontknow - 我不好&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/&title=今日第一题 - 我不好&summary="
           
           >
           
@@ -2654,7 +2675,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2025/05/11/idontknow/&title=idontknow - 我不好&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/&title=今日第一题 - 我不好&summary="
           
           >
           
@@ -2687,20 +2708,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2025/06/30/%E4%BB%8A%E6%97%A5%E5%88%B7%E9%A2%98/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>今日刷题</p>
-          <p class='content'>28. 找出字符串中第一个匹配项的下标
-难度：简单
-标签：字符串、双指针、字符串匹配
-企业：相关企业（Premium 题目）
-题目描述
-给你两个字符串 haystack 和 needle，请你在...</p>
-        </a>
       
-      
-        <a class='next' href='/2025/02/26/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B9%B2%E5%95%A5/'>
-          <p class='title'>不知道干啥<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好无聊好...</p>
+        <a class='next' href='/2025/07/17/%E6%98%8E%E5%A4%A9%E6%81%A2%E5%A4%8D%E5%88%B7%E9%A2%98/'>
+          <p class='title'>明天恢复刷题<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>科二我看也不是什么难题啊
+今天歇逼一天明天继续刷题
+</p>
         </a>
       
     </div>
@@ -2719,7 +2732,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/2025/05/11/idontknow/index.html#comments">
+      <meta itemprop="discussionUrl" content="/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/index.html#comments">
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
@@ -2750,6 +2763,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
 
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B-1"><span class="toc-text">输入输出样例 #1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5-1"><span class="toc-text">输入 #1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA-1"><span class="toc-text">输出 #1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BC%A0%E5%85%A5%E5%87%BD%E6%95%B0%E7%94%A8vector%E5%B0%B1%E8%A1%8C%E4%BA%86%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">二维数组传入函数用vector就行了，初始化方法</span></a></li></ol></li></ol>
+  </div>
+</section>
 
   
 
@@ -3403,7 +3430,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"一个无聊的人的博客"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我不好"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2025/05/11/idontknow/","name":"idontknow"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我不好","url":"http://example.com/","keywords":null,"description":"一个无聊的人的博客","author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"一个无聊的人的博客"},"publisher":{"@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"idontknow","description":"一个无聊的人的博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/05/11/idontknow/"},"author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我不好","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2025/05/11/idontknow/","wordCount":0,"datePublished":"2025-05-11T14:59:02.000Z","dateModified":"2025-05-11T14:59:02.403Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"一个无聊的人的博客"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"我不好"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/2025/07/18/今日第一题/","name":"今日第一题"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"我不好","url":"http://example.com/","keywords":null,"description":"一个无聊的人的博客","author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"一个无聊的人的博客"},"publisher":{"@type":"Organization","name":"我不好","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"今日第一题","description":"一个无聊的人的博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/"},"author":{"@type":"Person","name":"Ermasmg","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"我不好","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/2025/07/18/%E4%BB%8A%E6%97%A5%E7%AC%AC%E4%B8%80%E9%A2%98/","wordCount":0,"datePublished":"2025-07-18T11:06:05.000Z","dateModified":"2025-07-18T11:09:47.718Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
